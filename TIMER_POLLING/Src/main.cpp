@@ -1,5 +1,9 @@
 #include <stdint.h>
 #include<STM32F407xx.h>
+inline constexpruint32_t* NVIC_ISER0=reinterpret_cast<volatile uint32_t*>(0xE000E100);
+inline constexpr uint32_t *NVIC_ICPR0=reinterpret_cast<volatile uint32_t*>(0xE000E280);
+inline constexpr uin32_t *NVIC_IPR7=reinterpret_cast<volatile uint32_t*>(0xE000E41C);
+
 int main(void)
 {
     /* RCC Registers */
@@ -21,7 +25,7 @@ int main(void)
    // *pRCC_AHB1ENR |= (1 << 2);  // GPIOC enable
     //*pRCC_APB1ENR |= (1 << 0);  // TIM2 enable
     RCC->AHB1ENR|=(1<<3);
-    RCC->APB1ENR|=(1<<0);
+    RCC->APB1ENR|=(1<<0);//Timer 2 enable
 
     /* 2. Configure PC6 as output */
 //    *pGPIOC_MODER &= ~(3 << (6 * 2));  // Clear bits
